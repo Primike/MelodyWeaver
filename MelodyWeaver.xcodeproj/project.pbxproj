@@ -11,6 +11,8 @@
 		9E307F2F2B54C4A600D87280 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E307F2E2B54C4A600D87280 /* Assets.xcassets */; };
 		9E307F322B54C4A600D87280 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E307F312B54C4A600D87280 /* Preview Assets.xcassets */; };
 		9E8CAF042B558EB200E0C25E /* SheetMusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8CAF032B558EB200E0C25E /* SheetMusicView.swift */; };
+		9E8CAF092B55AA6900E0C25E /* NewSongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8CAF082B55AA6900E0C25E /* NewSongView.swift */; };
+		9E8CAF0B2B55AAD100E0C25E /* NoteKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8CAF0A2B55AAD100E0C25E /* NoteKeyboardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		9E307F2E2B54C4A600D87280 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9E307F312B54C4A600D87280 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9E8CAF032B558EB200E0C25E /* SheetMusicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetMusicView.swift; sourceTree = "<group>"; };
+		9E8CAF082B55AA6900E0C25E /* NewSongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSongView.swift; sourceTree = "<group>"; };
+		9E8CAF0A2B55AAD100E0C25E /* NoteKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteKeyboardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +83,8 @@
 			isa = PBXGroup;
 			children = (
 				9E8CAF032B558EB200E0C25E /* SheetMusicView.swift */,
+				9E8CAF082B55AA6900E0C25E /* NewSongView.swift */,
+				9E8CAF0A2B55AAD100E0C25E /* NoteKeyboardView.swift */,
 			);
 			path = SheetView;
 			sourceTree = "<group>";
@@ -158,7 +164,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E8CAF042B558EB200E0C25E /* SheetMusicView.swift in Sources */,
+				9E8CAF092B55AA6900E0C25E /* NewSongView.swift in Sources */,
 				9E307F2B2B54C4A500D87280 /* MelodyWeaverApp.swift in Sources */,
+				9E8CAF0B2B55AAD100E0C25E /* NoteKeyboardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

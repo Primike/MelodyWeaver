@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SheetMusicView: View {
-    private var gridItems: [GridItem] = Array(repeating: GridItem(.flexible(), spacing: 10), count: 10)
+    private var gridItems: [GridItem] = Array(repeating: GridItem(.flexible()), count: 10)
 
     var body: some View {
         ScrollView {
