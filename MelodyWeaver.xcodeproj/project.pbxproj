@@ -14,8 +14,10 @@
 		9E7908A82B5D8C74005920D6 /* badum.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9E7908A72B5D8C74005920D6 /* badum.mp3 */; };
 		9E7908AB2B5D99F9005920D6 /* MusicSoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7908AA2B5D99F9005920D6 /* MusicSoundManager.swift */; };
 		9E7908AE2B5DA2AF005920D6 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9E7908AD2B5DA2AF005920D6 /* AudioKit */; };
-		9E7908B02B5DBFBC005920D6 /* piano.exs in Resources */ = {isa = PBXBuildFile; fileRef = 9E7908AF2B5DBFBC005920D6 /* piano.exs */; };
 		9E7908B32B5DCD7F005920D6 /* AudioKitEX in Frameworks */ = {isa = PBXBuildFile; productRef = 9E7908B22B5DCD7F005920D6 /* AudioKitEX */; };
+		9E790AD72B5E1160005920D6 /* saw220-ana1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9E790AD52B5E1160005920D6 /* saw220-ana1.wav */; };
+		9E790AD82B5E1160005920D6 /* sawPiano1.exs in Resources */ = {isa = PBXBuildFile; fileRef = 9E790AD62B5E1160005920D6 /* sawPiano1.exs */; };
+		9E790ADB2B5EB945005920D6 /* Keyboard in Frameworks */ = {isa = PBXBuildFile; productRef = 9E790ADA2B5EB945005920D6 /* Keyboard */; };
 		9E8CAF042B558EB200E0C25E /* SheetMusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8CAF032B558EB200E0C25E /* SheetMusicView.swift */; };
 		9E8CAF092B55AA6900E0C25E /* NewSongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8CAF082B55AA6900E0C25E /* NewSongView.swift */; };
 		9E8CAF0B2B55AAD100E0C25E /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8CAF0A2B55AAD100E0C25E /* KeyboardView.swift */; };
@@ -30,7 +32,8 @@
 		9E7908A52B5D8C6E005920D6 /* tada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tada.mp3; sourceTree = "<group>"; };
 		9E7908A72B5D8C74005920D6 /* badum.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = badum.mp3; sourceTree = "<group>"; };
 		9E7908AA2B5D99F9005920D6 /* MusicSoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicSoundManager.swift; sourceTree = "<group>"; };
-		9E7908AF2B5DBFBC005920D6 /* piano.exs */ = {isa = PBXFileReference; lastKnownFileType = file; name = piano.exs; path = MelodyWeaver/piano.exs; sourceTree = SOURCE_ROOT; };
+		9E790AD52B5E1160005920D6 /* saw220-ana1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "saw220-ana1.wav"; sourceTree = "<group>"; };
+		9E790AD62B5E1160005920D6 /* sawPiano1.exs */ = {isa = PBXFileReference; lastKnownFileType = file; path = sawPiano1.exs; sourceTree = "<group>"; };
 		9E8CAF032B558EB200E0C25E /* SheetMusicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetMusicView.swift; sourceTree = "<group>"; };
 		9E8CAF082B55AA6900E0C25E /* NewSongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSongView.swift; sourceTree = "<group>"; };
 		9E8CAF0A2B55AAD100E0C25E /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
@@ -42,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E790ADB2B5EB945005920D6 /* Keyboard in Frameworks */,
 				9E7908AE2B5DA2AF005920D6 /* AudioKit in Frameworks */,
 				9E7908B32B5DCD7F005920D6 /* AudioKitEX in Frameworks */,
 			);
@@ -69,7 +73,8 @@
 		9E307F292B54C4A500D87280 /* MelodyWeaver */ = {
 			isa = PBXGroup;
 			children = (
-				9E7908AF2B5DBFBC005920D6 /* piano.exs */,
+				9E790AD52B5E1160005920D6 /* saw220-ana1.wav */,
+				9E790AD62B5E1160005920D6 /* sawPiano1.exs */,
 				9E8CAF012B558E0F00E0C25E /* Files */,
 				9E307F2A2B54C4A500D87280 /* MelodyWeaverApp.swift */,
 				9E7908A92B5D99E7005920D6 /* SoundManager */,
@@ -143,6 +148,7 @@
 			packageProductDependencies = (
 				9E7908AD2B5DA2AF005920D6 /* AudioKit */,
 				9E7908B22B5DCD7F005920D6 /* AudioKitEX */,
+				9E790ADA2B5EB945005920D6 /* Keyboard */,
 			);
 			productName = MelodyWeaver;
 			productReference = 9E307F272B54C4A500D87280 /* MelodyWeaver.app */;
@@ -175,6 +181,7 @@
 			packageReferences = (
 				9E7908AC2B5DA2AF005920D6 /* XCRemoteSwiftPackageReference "AudioKit" */,
 				9E7908B12B5DCD7F005920D6 /* XCRemoteSwiftPackageReference "AudioKitEX" */,
+				9E790AD92B5EB945005920D6 /* XCRemoteSwiftPackageReference "Keyboard" */,
 			);
 			productRefGroup = 9E307F282B54C4A500D87280 /* Products */;
 			projectDirPath = "";
@@ -190,8 +197,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E7908B02B5DBFBC005920D6 /* piano.exs in Resources */,
 				9E7908A82B5D8C74005920D6 /* badum.mp3 in Resources */,
+				9E790AD72B5E1160005920D6 /* saw220-ana1.wav in Resources */,
+				9E790AD82B5E1160005920D6 /* sawPiano1.exs in Resources */,
 				9E307F322B54C4A600D87280 /* Preview Assets.xcassets in Resources */,
 				9E307F2F2B54C4A600D87280 /* Assets.xcassets in Resources */,
 				9E7908A62B5D8C6E005920D6 /* tada.mp3 in Resources */,
@@ -434,6 +442,14 @@
 				minimumVersion = 5.6.0;
 			};
 		};
+		9E790AD92B5EB945005920D6 /* XCRemoteSwiftPackageReference "Keyboard" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/Keyboard.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.6;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -446,6 +462,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9E7908B12B5DCD7F005920D6 /* XCRemoteSwiftPackageReference "AudioKitEX" */;
 			productName = AudioKitEX;
+		};
+		9E790ADA2B5EB945005920D6 /* Keyboard */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9E790AD92B5EB945005920D6 /* XCRemoteSwiftPackageReference "Keyboard" */;
+			productName = Keyboard;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

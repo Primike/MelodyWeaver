@@ -9,6 +9,7 @@ import SwiftUI
 
 struct NewSongView: View {
     @StateObject var viewModel: SheetMusicViewModel
+    @State var isPlaying = false
     
     var body: some View {
         NavigationView {
@@ -22,7 +23,8 @@ struct NewSongView: View {
             }
             .toolbar(content: {
                 Button(action: {
-                    viewModel.playSound()
+                    isPlaying = !isPlaying
+                    viewModel.buttonPressed(isPlaying)
                 }, label: {
                     Text("Button")
                 })
