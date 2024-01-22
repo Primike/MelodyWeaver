@@ -7,7 +7,9 @@
 
 import SwiftUI
 
-struct NoteKeyboardView: View {
+struct KeyboardView: View {
+    @EnvironmentObject var viewModel: SheetMusicViewModel
+    
     var body: some View {
         HStack(spacing: 10) {
             VStack {
@@ -56,10 +58,13 @@ struct NoteKeyboardView: View {
 }
 
 struct MusicButtonView: View {
+    @EnvironmentObject var viewModel: SheetMusicViewModel
     let text: String
     
     var body: some View {
-        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+        Button(action: {
+            addNote(text)
+        }, label: {
             Text(text)
                 .lineLimit(1)
                 .minimumScaleFactor(0.3)
@@ -68,10 +73,16 @@ struct MusicButtonView: View {
         .frame(maxWidth: .infinity)
         .background(Color(uiColor: .quaternarySystemFill))
     }
+    
+    private func addNote(_ note: String) {
+        viewModel.addNote(note)
+    }
 }
 
 #Preview {
-    NoteKeyboardView()
+    let viewModel = SheetMusicViewModel(notes: 15)
+    return KeyboardView()
+        .environmentObject(viewModel)
 }
 //
 //MusicButtonView(text: "♩ Whole Note")

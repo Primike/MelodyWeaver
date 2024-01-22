@@ -10,9 +10,16 @@
 		9E307F2B2B54C4A500D87280 /* MelodyWeaverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E307F2A2B54C4A500D87280 /* MelodyWeaverApp.swift */; };
 		9E307F2F2B54C4A600D87280 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E307F2E2B54C4A600D87280 /* Assets.xcassets */; };
 		9E307F322B54C4A600D87280 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E307F312B54C4A600D87280 /* Preview Assets.xcassets */; };
+		9E7908A62B5D8C6E005920D6 /* tada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9E7908A52B5D8C6E005920D6 /* tada.mp3 */; };
+		9E7908A82B5D8C74005920D6 /* badum.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9E7908A72B5D8C74005920D6 /* badum.mp3 */; };
+		9E7908AB2B5D99F9005920D6 /* MusicSoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7908AA2B5D99F9005920D6 /* MusicSoundManager.swift */; };
+		9E7908AE2B5DA2AF005920D6 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9E7908AD2B5DA2AF005920D6 /* AudioKit */; };
+		9E7908B02B5DBFBC005920D6 /* piano.exs in Resources */ = {isa = PBXBuildFile; fileRef = 9E7908AF2B5DBFBC005920D6 /* piano.exs */; };
+		9E7908B32B5DCD7F005920D6 /* AudioKitEX in Frameworks */ = {isa = PBXBuildFile; productRef = 9E7908B22B5DCD7F005920D6 /* AudioKitEX */; };
 		9E8CAF042B558EB200E0C25E /* SheetMusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8CAF032B558EB200E0C25E /* SheetMusicView.swift */; };
 		9E8CAF092B55AA6900E0C25E /* NewSongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8CAF082B55AA6900E0C25E /* NewSongView.swift */; };
-		9E8CAF0B2B55AAD100E0C25E /* NoteKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8CAF0A2B55AAD100E0C25E /* NoteKeyboardView.swift */; };
+		9E8CAF0B2B55AAD100E0C25E /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8CAF0A2B55AAD100E0C25E /* KeyboardView.swift */; };
+		9E9EB1362B5D89A2008EBAF3 /* SheetMusicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9EB1352B5D89A2008EBAF3 /* SheetMusicViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,9 +27,14 @@
 		9E307F2A2B54C4A500D87280 /* MelodyWeaverApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MelodyWeaverApp.swift; sourceTree = "<group>"; };
 		9E307F2E2B54C4A600D87280 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9E307F312B54C4A600D87280 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		9E7908A52B5D8C6E005920D6 /* tada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tada.mp3; sourceTree = "<group>"; };
+		9E7908A72B5D8C74005920D6 /* badum.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = badum.mp3; sourceTree = "<group>"; };
+		9E7908AA2B5D99F9005920D6 /* MusicSoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicSoundManager.swift; sourceTree = "<group>"; };
+		9E7908AF2B5DBFBC005920D6 /* piano.exs */ = {isa = PBXFileReference; lastKnownFileType = file; name = piano.exs; path = MelodyWeaver/piano.exs; sourceTree = SOURCE_ROOT; };
 		9E8CAF032B558EB200E0C25E /* SheetMusicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetMusicView.swift; sourceTree = "<group>"; };
 		9E8CAF082B55AA6900E0C25E /* NewSongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSongView.swift; sourceTree = "<group>"; };
-		9E8CAF0A2B55AAD100E0C25E /* NoteKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteKeyboardView.swift; sourceTree = "<group>"; };
+		9E8CAF0A2B55AAD100E0C25E /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
+		9E9EB1352B5D89A2008EBAF3 /* SheetMusicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetMusicViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,6 +42,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E7908AE2B5DA2AF005920D6 /* AudioKit in Frameworks */,
+				9E7908B32B5DCD7F005920D6 /* AudioKitEX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,8 +69,11 @@
 		9E307F292B54C4A500D87280 /* MelodyWeaver */ = {
 			isa = PBXGroup;
 			children = (
+				9E7908AF2B5DBFBC005920D6 /* piano.exs */,
 				9E8CAF012B558E0F00E0C25E /* Files */,
 				9E307F2A2B54C4A500D87280 /* MelodyWeaverApp.swift */,
+				9E7908A92B5D99E7005920D6 /* SoundManager */,
+				9E9EB1342B5D898B008EBAF3 /* ViewModel */,
 				9E8CAF022B558E2C00E0C25E /* SheetView */,
 			);
 			path = MelodyWeaver;
@@ -70,9 +87,19 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		9E7908A92B5D99E7005920D6 /* SoundManager */ = {
+			isa = PBXGroup;
+			children = (
+				9E7908AA2B5D99F9005920D6 /* MusicSoundManager.swift */,
+			);
+			path = SoundManager;
+			sourceTree = "<group>";
+		};
 		9E8CAF012B558E0F00E0C25E /* Files */ = {
 			isa = PBXGroup;
 			children = (
+				9E7908A52B5D8C6E005920D6 /* tada.mp3 */,
+				9E7908A72B5D8C74005920D6 /* badum.mp3 */,
 				9E307F302B54C4A600D87280 /* Preview Content */,
 				9E307F2E2B54C4A600D87280 /* Assets.xcassets */,
 			);
@@ -82,11 +109,19 @@
 		9E8CAF022B558E2C00E0C25E /* SheetView */ = {
 			isa = PBXGroup;
 			children = (
-				9E8CAF032B558EB200E0C25E /* SheetMusicView.swift */,
 				9E8CAF082B55AA6900E0C25E /* NewSongView.swift */,
-				9E8CAF0A2B55AAD100E0C25E /* NoteKeyboardView.swift */,
+				9E8CAF032B558EB200E0C25E /* SheetMusicView.swift */,
+				9E8CAF0A2B55AAD100E0C25E /* KeyboardView.swift */,
 			);
 			path = SheetView;
+			sourceTree = "<group>";
+		};
+		9E9EB1342B5D898B008EBAF3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9E9EB1352B5D89A2008EBAF3 /* SheetMusicViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -106,6 +141,8 @@
 			);
 			name = MelodyWeaver;
 			packageProductDependencies = (
+				9E7908AD2B5DA2AF005920D6 /* AudioKit */,
+				9E7908B22B5DCD7F005920D6 /* AudioKitEX */,
 			);
 			productName = MelodyWeaver;
 			productReference = 9E307F272B54C4A500D87280 /* MelodyWeaver.app */;
@@ -136,6 +173,8 @@
 			);
 			mainGroup = 9E307F1E2B54C4A500D87280;
 			packageReferences = (
+				9E7908AC2B5DA2AF005920D6 /* XCRemoteSwiftPackageReference "AudioKit" */,
+				9E7908B12B5DCD7F005920D6 /* XCRemoteSwiftPackageReference "AudioKitEX" */,
 			);
 			productRefGroup = 9E307F282B54C4A500D87280 /* Products */;
 			projectDirPath = "";
@@ -151,8 +190,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E7908B02B5DBFBC005920D6 /* piano.exs in Resources */,
+				9E7908A82B5D8C74005920D6 /* badum.mp3 in Resources */,
 				9E307F322B54C4A600D87280 /* Preview Assets.xcassets in Resources */,
 				9E307F2F2B54C4A600D87280 /* Assets.xcassets in Resources */,
+				9E7908A62B5D8C6E005920D6 /* tada.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,9 +206,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E8CAF042B558EB200E0C25E /* SheetMusicView.swift in Sources */,
+				9E7908AB2B5D99F9005920D6 /* MusicSoundManager.swift in Sources */,
+				9E9EB1362B5D89A2008EBAF3 /* SheetMusicViewModel.swift in Sources */,
 				9E8CAF092B55AA6900E0C25E /* NewSongView.swift in Sources */,
 				9E307F2B2B54C4A500D87280 /* MelodyWeaverApp.swift in Sources */,
-				9E8CAF0B2B55AAD100E0C25E /* NoteKeyboardView.swift in Sources */,
+				9E8CAF0B2B55AAD100E0C25E /* KeyboardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,6 +416,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9E7908AC2B5DA2AF005920D6 /* XCRemoteSwiftPackageReference "AudioKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/AudioKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.2;
+			};
+		};
+		9E7908B12B5DCD7F005920D6 /* XCRemoteSwiftPackageReference "AudioKitEX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/AudioKitEX";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9E7908AD2B5DA2AF005920D6 /* AudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9E7908AC2B5DA2AF005920D6 /* XCRemoteSwiftPackageReference "AudioKit" */;
+			productName = AudioKit;
+		};
+		9E7908B22B5DCD7F005920D6 /* AudioKitEX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9E7908B12B5DCD7F005920D6 /* XCRemoteSwiftPackageReference "AudioKitEX" */;
+			productName = AudioKitEX;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9E307F1F2B54C4A500D87280 /* Project object */;
 }

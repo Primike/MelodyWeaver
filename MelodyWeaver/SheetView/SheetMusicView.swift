@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct SheetMusicView: View {
-    private var gridItems: [GridItem] = Array(repeating: GridItem(.flexible()), count: 10)
+    @EnvironmentObject var viewModel: SheetMusicViewModel
+    var gridItems: [GridItem] = Array(repeating: GridItem(.flexible()), count: 10)
 
     var body: some View {
         ScrollView {
             LazyVGrid(columns: gridItems, spacing: 10) {
                 // Loop through the notes
-                ForEach(0..<15, id: \.self) { index in
+                ForEach(0..<viewModel.notes, id: \.self) { index in
                     VStack {
                         Image("sixteenth")
                             .resizable()
@@ -32,5 +33,7 @@ struct SheetMusicView: View {
 }
 
 #Preview {
-    SheetMusicView()
+    let viewModel = SheetMusicViewModel(notes: 15)
+    return SheetMusicView()
+        .environmentObject(viewModel)
 }

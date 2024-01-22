@@ -8,18 +8,32 @@
 import SwiftUI
 
 struct NewSongView: View {
+    @StateObject var viewModel: SheetMusicViewModel
+    
     var body: some View {
-        VStack {
-            SheetMusicView()
-                .frame(height: UIScreen.screenHeight * 0.45)
-            NoteKeyboardView()
-                .frame(height: UIScreen.screenHeight * 0.45)
+        NavigationView {
+            VStack {
+                ScrollView {
+                    SheetMusicView()
+                        .frame(height: UIScreen.main.bounds.height * 0.55)
+                }
+                KeyboardView()
+                    .frame(height: UIScreen.main.bounds.height * 0.4)
+            }
+            .toolbar(content: {
+                Button(action: {
+                    viewModel.playSound()
+                }, label: {
+                    Text("Button")
+                })
+            })
+            .environmentObject(viewModel)
         }
     }
 }
 
 #Preview {
-    NewSongView()
+    NewSongView(viewModel: SheetMusicViewModel(notes: 85))
 }
 
 public extension UIScreen {
