@@ -15,7 +15,7 @@ struct NoteTypeButtonView: View {
 
     var body: some View {
         Button(action: {
-            viewModel.selectedNoteType = noteType
+            viewModel.changeNoteType(noteType)
         }, label: {
             Text(text)
                 .lineLimit(1)

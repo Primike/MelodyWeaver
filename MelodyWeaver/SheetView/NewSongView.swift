@@ -14,10 +14,8 @@ struct NewSongView: View {
     var body: some View {
         NavigationView {
             VStack {
-                ScrollView {
-                    SheetMusicView()
-                        .frame(height: UIScreen.main.bounds.height * 0.5)
-                }
+                SheetMusicView()
+                    .frame(height: UIScreen.main.bounds.height * 0.45)
                 KeyboardView()
                     .frame(height: UIScreen.main.bounds.height * 0.45)
             }

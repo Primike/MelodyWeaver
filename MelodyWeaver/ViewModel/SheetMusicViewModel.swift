@@ -8,8 +8,8 @@
 import Foundation
 import Tonic
 
-
 enum NoteType: Int {
+    case none = 0
     case whole = 15
     case half = 30
     case quarter = 60
@@ -21,11 +21,10 @@ enum NoteType: Int {
 class SheetMusicViewModel: ObservableObject {
     var soundManager: MusicSoundManager = MusicSoundManager()
     @Published var selectedNoteType: NoteType = .quarter
-    @Published var notes: [Int] = []
-    var speed: [Int] = []
+    @Published var notes: [Int] = Songs.frereJacques.notes
+    var speed: [Int] = Songs.frereJacques.tempos
 
-    init() {
-    }
+    init() {}
     
     func playPressed(_ isPlaying: Bool) {
         soundManager.loadSong(notes, speed)
@@ -34,8 +33,10 @@ class SheetMusicViewModel: ObservableObject {
     
     func noteOn(pitch: Pitch, point _: CGPoint) {
         soundManager.loadSong([pitch.intValue], [10])
-        speed.append(selectedNoteType.rawValue)
-        notes.append(pitch.intValue)
+        if selectedNoteType != .none {
+            speed.append(selectedNoteType.rawValue)
+            notes.append(pitch.intValue)
+        }
         soundManager.playMelody()
     }
 
@@ -58,27 +59,15 @@ class SheetMusicViewModel: ObservableObject {
     }
     
     func changeNoteType(_ noteType: NoteType) {
-        selectedNoteType = noteType
+        selectedNoteType = (noteType == selectedNoteType ? .none : noteType)
     }
-}
-
-struct Song {
-    var notes: [Int]
-    var tempos: [Int]
-}
-
-struct Songs {
-    static let maryHadALittleLamb = Song(
-        notes: [64, 62, 60, 62, 64, 64, 64, 62, 62, 62, 64, 67, 67,
-                64, 62, 60, 62, 64, 64, 64, 64, 62, 62, 64, 62, 60],
-        tempos: [60, 60, 60, 60, 60, 60, 30, 60, 60, 30, 60, 60, 30,
-                 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60]
-    )
     
-    static let twinkleTwinkleLittleStar = Song(
-        notes: [60, 60, 67, 67, 69, 69, 67, 0, 65, 65, 64, 64, 62, 62, 60, 0,
-                67, 67, 65, 65, 64, 64, 62, 0, 67, 67, 65, 65, 64, 64, 62, 0,
-                60, 60, 67, 67, 69, 69, 67, 0, 65, 65, 64, 64, 62, 62, 60],
-        tempos: Array(repeating: 60, count: 47)
-    )
+    func getCellName(_ i: Int) -> String {
+        return MIDITranslation.getName(notes[i])
+    }
+    
+    func getCellImage(_ i: Int) -> String {
+        return MIDITranslation.getImage(notes[i], speed[i])
+    }
+    
 }

@@ -81,5 +81,6 @@ struct KeyboardRange {
         Pitch(84) ... Pitch(100),
         Pitch(96) ... Pitch(112),
         Pitch(108) ... Pitch(124),
+        Pitch(111)...Pitch(127)
     ]
 }
