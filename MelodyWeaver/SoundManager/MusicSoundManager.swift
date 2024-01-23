@@ -16,8 +16,8 @@ class MusicSoundManager: ObservableObject, HasAudioEngine {
     var instrument = AppleSampler()
     var sequencer: SequencerTrack!
     var midiCallback: CallbackInstrument!
-    var notes = [Int]()
-    var speed = [Int]()
+    var songNotes = [Int]()
+    var noteSpeed = [Int]()
 
     init() {
         midiCallback = CallbackInstrument { [weak self] status, note, vel in
@@ -25,7 +25,7 @@ class MusicSoundManager: ObservableObject, HasAudioEngine {
             self.stopNotes()
 
             if status == 144 {
-                if self.notes.count < 1 { return }
+                if self.songNotes.count < 1 { return }
                 self.playNextNote()
             }
         }
@@ -33,57 +33,53 @@ class MusicSoundManager: ObservableObject, HasAudioEngine {
         engine.output = PeakLimiter(Mixer(instrument, midiCallback), attackTime: 0.001, decayTime: 0.001, preGain: 0)
         
         sequencer = SequencerTrack(targetNode: midiCallback)
-        sequencer.length = 0.25
-        sequencer.add(noteNumber: 20, position: 0.0, duration: 0.24)
-
+        
+        // Length has to be equal to duration for note
+        sequencer.length = 0.5
+        sequencer.add(noteNumber: 20, position: 0.0, duration: 0.5)
         loadInstrument("sawPiano1")
     }
     
     var currentIndex = 0
-    var currentSpeed = 0
 
+    func loadSong(_ notes: [Int], _ speed: [Int]) {
+        songNotes = notes
+        noteSpeed = speed
+    }
+    
+    func changeTempo(_ tempo: Int) {
+        sequencer.clear()
+        sequencer.length = 0.5
+        sequencer.add(noteNumber: 20, position: 0.0, duration: 0.5)
+    }
+    
     func playMelody() {
         start()
-
-        notes = [64, 62, 60, 62, 64, 64, 64, 62, 62, 62, 64, 67, 67, 64, 62, 60, 62, 64, 64, 64, 64, 62, 62, 64, 62, 60]
-
-        speed = [60, 60, 60, 60, 60, 60, 30, 60, 60, 30, 60, 60, 30, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60]
         sequencer.playFromStart()
     }
-    
-    func stopMelody() {
-        currentIndex = 0
-        currentSpeed = 0
-        stop()
-    }
-    
+        
     func playNextNote() {
         let index = currentIndex
         currentIndex += 1
         
-        if index >= notes.count {
+        if index >= songNotes.count {
             // Need to send message to view bool if stop at end
             stopMelody()
             return
         }
         
-        sequencer.tempo = Double(speed[index])
-        instrument.play(noteNumber: UInt8(notes[index]), velocity: 120, channel: 0)
+        sequencer.tempo = Double(noteSpeed[index])
+        instrument.play(noteNumber: UInt8(songNotes[index]), velocity: 120, channel: 0)
+    }
+    
+    func stopMelody() {
+        currentIndex = 0
+        stop()
     }
 }
 
 
 extension MusicSoundManager {
-    func noteOn(pitch: Pitch, point _: CGPoint) {
-        notes = [pitch.intValue]
-        speed = [10]
-        start()
-        sequencer.playFromStart()
-    }
-
-    func noteOff(pitch: Pitch) {
-        stopMelody()
-    }
 
     private func stopNotes() {
         for i in 0...127 {

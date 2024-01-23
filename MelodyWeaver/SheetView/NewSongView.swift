@@ -16,17 +16,17 @@ struct NewSongView: View {
             VStack {
                 ScrollView {
                     SheetMusicView()
-                        .frame(height: UIScreen.main.bounds.height * 0.55)
+                        .frame(height: UIScreen.main.bounds.height * 0.5)
                 }
                 KeyboardView()
-                    .frame(height: UIScreen.main.bounds.height * 0.4)
+                    .frame(height: UIScreen.main.bounds.height * 0.45)
             }
             .toolbar(content: {
                 Button(action: {
                     isPlaying = !isPlaying
-                    viewModel.buttonPressed(isPlaying)
+                    viewModel.playPressed(isPlaying)
                 }, label: {
-                    Text("Button")
+                    Text(isPlaying ? "Stop" : "Play")
                 })
             })
             .environmentObject(viewModel)
@@ -35,7 +35,7 @@ struct NewSongView: View {
 }
 
 #Preview {
-    NewSongView(viewModel: SheetMusicViewModel(notes: 85))
+    NewSongView(viewModel: SheetMusicViewModel())
 }
 
 public extension UIScreen {

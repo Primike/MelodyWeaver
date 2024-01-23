@@ -28,43 +28,66 @@ struct KeyboardView: View {
     var body: some View {
         VStack(spacing: 0) {
             VStack(spacing: 0) {
+                // MARK: - Top Buttons
+                
                 HStack(spacing: 0) {
-                    MusicButtonView(action: {}, text: "Tempo")
+                    MusicButtonView(action: {
+                        viewModel.changeTempo(1)
+                    }, text: "Tempo")
                     MusicButtonView(action: {
                         changeOctave(-1)
                     }, text: "← Octave")
                     MusicButtonView(action: {
                         changeOctave(1)
                     }, text: "Octave →")
-
-                    MusicButtonView(action: {}, text: "Delete")
+                    MusicButtonView(action: {
+                        viewModel.deleteNode()
+                    }, text: "Delete")
                 }
                 .frame(maxHeight: .infinity)
-
+                // MARK: - Middle Buttons
                 
                 HStack(spacing: 0) {
-                    MusicButtonView(action: {}, text: "Whole")
-                    MusicButtonView(action: {}, text: "Half")
-                    MusicButtonView(action: {}, text: "Quarter")
+                    MusicButtonView(action: {
+                        viewModel.changeNoteType(.whole)
+                    }, text: "Whole")
+                    MusicButtonView(action: {
+                        viewModel.changeNoteType(.half)
+                    }, text: "Half")
+                    MusicButtonView(action: {
+                        viewModel.changeNoteType(.quarter)
+                    }, text: "Quarter")
                 }
                 .frame(maxHeight: .infinity)
-
+                // MARK: - Bottom Buttons
+                
                 HStack(spacing: 0) {
-                    MusicButtonView(action: {}, text: "Eight")
-                    MusicButtonView(action: {}, text: "Triplet")
-                    MusicButtonView(action: {}, text: "Sixteenth")
+                    MusicButtonView(action: {
+                        viewModel.changeNoteType(.eight)
+                    }, text: "Eight")
+                    MusicButtonView(action: {
+                        viewModel.changeNoteType(.triplet)
+                    }, text: "Triplet")
+                    MusicButtonView(action: {
+                        viewModel.changeNoteType(.sixteenth)
+                    }, text: "Sixteenth")
                 }
                 .frame(maxHeight: .infinity)
 
             }
             .padding(.bottom)
+            .background(.black)
+            
+            // MARK: - Keyboard
             
             Keyboard(layout: .piano(pitchRange: pitches[currentPitch]),
-                     noteOn: viewModel.soundManager.noteOn(pitch:point:), noteOff: viewModel.soundManager.noteOff(pitch:))
-            .background(.yellow)
+                     noteOn: viewModel.noteOn(pitch:point:), noteOff: viewModel.noteOff(pitch:))
+            .background(.black)
+            .frame(maxHeight: .infinity)
         }
-        .frame(height: UIScreen.main.bounds.height / 3)
     }
+    
+    // MARK: - Functions
     
     func changeOctave(_ direction: Int) {
         currentPitch = max(0, min(currentPitch + direction, pitches.count - 1))
@@ -81,33 +104,23 @@ struct MusicButtonView: View {
             Text(text)
                 .lineLimit(1)
                 .fontWeight(.bold)
-                .minimumScaleFactor(0.3)
-                .foregroundStyle(.black)
+                .minimumScaleFactor(0.4)
+                .font(.body)
+                .foregroundStyle(.white)
                 .frame(maxWidth: .infinity)
                 .frame(maxHeight: .infinity)
                 .border(Color.black, width: 1.5)
-                .background(.yellow)
+                .background(.gray)
         })
     }
     
     private func addNote(_ note: String) {
-        viewModel.addNote(note)
+        viewModel.addNote()
     }
 }
 
 #Preview {
-    let viewModel = SheetMusicViewModel(notes: 15)
+    let viewModel = SheetMusicViewModel()
     return KeyboardView()
         .environmentObject(viewModel)
 }
-//
-//MusicButtonView(text: "♩ Whole Note")
-//MusicButtonView(text: "♭ Flat")
-//MusicButtonView(text: "♯ Sharp")
-//
-
-//                HStack(spacing: 5) {
-//                    MusicButtonView(text: "♮ Standard")
-//                    MusicButtonView(text: "♭ Flat")
-//                    MusicButtonView(text: "♯ Sharp")
-//                }

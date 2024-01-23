@@ -11,7 +11,7 @@ import SwiftUI
 struct MelodyWeaverApp: App {
     var body: some Scene {
         WindowGroup {
-            NewSongView(viewModel: SheetMusicViewModel(notes: 15))
+            NewSongView(viewModel: SheetMusicViewModel())
         }
     }
 }
