@@ -19,14 +19,12 @@ enum NoteType: Int {
 }
 
 class SheetMusicViewModel: ObservableObject {
-    var soundManager = MusicSoundManager()
-    var noteLength = NoteType.quarter
-    
-    @Published var notes = Songs.twinkleTwinkleLittleStar.notes
-    var speed = Songs.twinkleTwinkleLittleStar.tempos
+    var soundManager: MusicSoundManager = MusicSoundManager()
+    @Published var selectedNoteType: NoteType = .quarter
+    @Published var notes: [Int] = []
+    var speed: [Int] = []
 
     init() {
-//        self.notes = notes
     }
     
     func playPressed(_ isPlaying: Bool) {
@@ -36,6 +34,8 @@ class SheetMusicViewModel: ObservableObject {
     
     func noteOn(pitch: Pitch, point _: CGPoint) {
         soundManager.loadSong([pitch.intValue], [10])
+        speed.append(selectedNoteType.rawValue)
+        notes.append(pitch.intValue)
         soundManager.playMelody()
     }
 
@@ -57,8 +57,8 @@ class SheetMusicViewModel: ObservableObject {
         // change the sequencer
     }
     
-    func changeNoteType(_ type: NoteType) {
-        noteLength = type
+    func changeNoteType(_ noteType: NoteType) {
+        selectedNoteType = noteType
     }
 }
 
@@ -79,6 +79,6 @@ struct Songs {
         notes: [60, 60, 67, 67, 69, 69, 67, 0, 65, 65, 64, 64, 62, 62, 60, 0,
                 67, 67, 65, 65, 64, 64, 62, 0, 67, 67, 65, 65, 64, 64, 62, 0,
                 60, 60, 67, 67, 69, 69, 67, 0, 65, 65, 64, 64, 62, 62, 60],
-        tempos: Array(repeating: 60, count: 46)
+        tempos: Array(repeating: 60, count: 47)
     )
 }

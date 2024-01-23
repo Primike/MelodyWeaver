@@ -18,6 +18,7 @@
 		9E790AD72B5E1160005920D6 /* saw220-ana1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9E790AD52B5E1160005920D6 /* saw220-ana1.wav */; };
 		9E790AD82B5E1160005920D6 /* sawPiano1.exs in Resources */ = {isa = PBXBuildFile; fileRef = 9E790AD62B5E1160005920D6 /* sawPiano1.exs */; };
 		9E790ADB2B5EB945005920D6 /* Keyboard in Frameworks */ = {isa = PBXBuildFile; productRef = 9E790ADA2B5EB945005920D6 /* Keyboard */; };
+		9E790ADE2B601B8F005920D6 /* KeyboardButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E790ADD2B601B8F005920D6 /* KeyboardButtons.swift */; };
 		9E8CAF042B558EB200E0C25E /* SheetMusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8CAF032B558EB200E0C25E /* SheetMusicView.swift */; };
 		9E8CAF092B55AA6900E0C25E /* NewSongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8CAF082B55AA6900E0C25E /* NewSongView.swift */; };
 		9E8CAF0B2B55AAD100E0C25E /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8CAF0A2B55AAD100E0C25E /* KeyboardView.swift */; };
@@ -34,6 +35,7 @@
 		9E7908AA2B5D99F9005920D6 /* MusicSoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicSoundManager.swift; sourceTree = "<group>"; };
 		9E790AD52B5E1160005920D6 /* saw220-ana1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "saw220-ana1.wav"; sourceTree = "<group>"; };
 		9E790AD62B5E1160005920D6 /* sawPiano1.exs */ = {isa = PBXFileReference; lastKnownFileType = file; path = sawPiano1.exs; sourceTree = "<group>"; };
+		9E790ADD2B601B8F005920D6 /* KeyboardButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardButtons.swift; sourceTree = "<group>"; };
 		9E8CAF032B558EB200E0C25E /* SheetMusicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetMusicView.swift; sourceTree = "<group>"; };
 		9E8CAF082B55AA6900E0C25E /* NewSongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSongView.swift; sourceTree = "<group>"; };
 		9E8CAF0A2B55AAD100E0C25E /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
@@ -100,6 +102,15 @@
 			path = SoundManager;
 			sourceTree = "<group>";
 		};
+		9E790ADC2B601B6F005920D6 /* Keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				9E8CAF0A2B55AAD100E0C25E /* KeyboardView.swift */,
+				9E790ADD2B601B8F005920D6 /* KeyboardButtons.swift */,
+			);
+			path = Keyboard;
+			sourceTree = "<group>";
+		};
 		9E8CAF012B558E0F00E0C25E /* Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,9 +125,9 @@
 		9E8CAF022B558E2C00E0C25E /* SheetView */ = {
 			isa = PBXGroup;
 			children = (
+				9E790ADC2B601B6F005920D6 /* Keyboard */,
 				9E8CAF082B55AA6900E0C25E /* NewSongView.swift */,
 				9E8CAF032B558EB200E0C25E /* SheetMusicView.swift */,
-				9E8CAF0A2B55AAD100E0C25E /* KeyboardView.swift */,
 			);
 			path = SheetView;
 			sourceTree = "<group>";
@@ -218,6 +229,7 @@
 				9E9EB1362B5D89A2008EBAF3 /* SheetMusicViewModel.swift in Sources */,
 				9E8CAF092B55AA6900E0C25E /* NewSongView.swift in Sources */,
 				9E307F2B2B54C4A500D87280 /* MelodyWeaverApp.swift in Sources */,
+				9E790ADE2B601B8F005920D6 /* KeyboardButtons.swift in Sources */,
 				9E8CAF0B2B55AAD100E0C25E /* KeyboardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

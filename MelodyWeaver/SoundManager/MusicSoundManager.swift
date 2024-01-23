@@ -62,7 +62,7 @@ class MusicSoundManager: ObservableObject, HasAudioEngine {
         let index = currentIndex
         currentIndex += 1
         
-        if index >= songNotes.count {
+        if index >= songNotes.count || index >= noteSpeed.count {
             // Need to send message to view bool if stop at end
             stopMelody()
             return

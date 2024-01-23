@@ -22,12 +22,18 @@ struct NewSongView: View {
                     .frame(height: UIScreen.main.bounds.height * 0.45)
             }
             .toolbar(content: {
-                Button(action: {
-                    isPlaying = !isPlaying
-                    viewModel.playPressed(isPlaying)
-                }, label: {
-                    Text(isPlaying ? "Stop" : "Play")
-                })
+                HStack {
+                    Button(action: {
+                    }, label: {
+                        Text("Tempo")
+                    })
+                    Button(action: {
+                        isPlaying = !isPlaying
+                        viewModel.playPressed(isPlaying)
+                    }, label: {
+                        Text(isPlaying ? "Stop" : "Play")
+                    })
+                }
             })
             .environmentObject(viewModel)
         }
