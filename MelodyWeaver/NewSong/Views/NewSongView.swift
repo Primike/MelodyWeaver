@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct NewSongView: View {
-    @StateObject var viewModel: SheetMusicViewModel
-    @State var isPlaying = false
     
+    @StateObject var viewModel: SheetMusicViewModel
+    @State var selectedTempo: Int = 120 // Default value
+    let tempoOptions = [60, 90, 120, 150, 180] // Example tempo values
+
     var body: some View {
         NavigationView {
             VStack {
@@ -21,15 +23,18 @@ struct NewSongView: View {
             }
             .toolbar(content: {
                 HStack {
+                    Picker("Tempo", selection: $selectedTempo) {
+                        ForEach(tempoOptions, id: \.self) { tempo in
+                            Text("\(tempo) BPM").tag(tempo)
+                        }
+                    }
+                    .pickerStyle(MenuPickerStyle())
+
+
                     Button(action: {
+                        viewModel.playPressed()
                     }, label: {
-                        Text("Tempo")
-                    })
-                    Button(action: {
-                        isPlaying = !isPlaying
-                        viewModel.playPressed(isPlaying)
-                    }, label: {
-                        Text(isPlaying ? "Stop" : "Play")
+                        Text(viewModel.isPlaying ? "Stop" : "Play")
                     })
                 }
             })

@@ -37,7 +37,7 @@ struct KeyboardView: View {
                 // MARK: - Top Buttons
                 
                 HStack(spacing: 0) {
-                    MusicButtonView(action: { viewModel.changeTempo(1) }, text: "Rest")
+                    MusicButtonView(action: { viewModel.addRest() }, text: "Rest")
                     MusicButtonView(action: { changeOctave(-1) }, text: "←")
                     MusicButtonView(action: { changeOctave(1) }, text: "→")
                     MusicButtonView(action: { viewModel.deleteNode() }, text: "Delete")

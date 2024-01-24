@@ -12,6 +12,8 @@ import AudioKitEX
 import Tonic
 
 class MusicSoundManager: ObservableObject, HasAudioEngine {
+    
+    @Published var isPlaying: Bool = false
     let engine = AudioEngine()
     var instrument = AppleSampler()
     var sequencer: SequencerTrack!
@@ -33,10 +35,8 @@ class MusicSoundManager: ObservableObject, HasAudioEngine {
         engine.output = PeakLimiter(Mixer(instrument, midiCallback), attackTime: 0.001, decayTime: 0.001, preGain: 0)
         
         sequencer = SequencerTrack(targetNode: midiCallback)
-        
-        // Length has to be equal to duration for note
-        sequencer.length = 0.5
-        sequencer.add(noteNumber: 20, position: 0.0, duration: 0.5)
+        sequencer.length = 0.50
+        sequencer.add(noteNumber: 20, position: 0.0, duration: 0.50)
         loadInstrument("sawPiano1")
     }
     
@@ -54,6 +54,7 @@ class MusicSoundManager: ObservableObject, HasAudioEngine {
     }
     
     func playMelody() {
+        isPlaying = true
         start()
         sequencer.playFromStart()
     }
@@ -63,18 +64,20 @@ class MusicSoundManager: ObservableObject, HasAudioEngine {
         currentIndex += 1
         
         if index >= songNotes.count || index >= noteSpeed.count {
-            // Need to send message to view bool if stop at end
+            // Need to send message to viewmodel playSound
             stopMelody()
             return
         }
         
+        let note = max(0, songNotes[index])
         sequencer.tempo = Double(noteSpeed[index])
-        instrument.play(noteNumber: UInt8(songNotes[index]), velocity: 120, channel: 0)
+        instrument.play(noteNumber: UInt8(note), velocity: 120, channel: 0)
     }
     
     func stopMelody() {
         currentIndex = 0
         stop()
+        isPlaying = false
     }
 }
 

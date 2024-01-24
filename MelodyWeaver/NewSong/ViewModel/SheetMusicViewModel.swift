@@ -7,6 +7,7 @@
 
 import Foundation
 import Tonic
+import Combine
 
 enum NoteType: Int {
     case none = 0
@@ -19,18 +20,28 @@ enum NoteType: Int {
 }
 
 class SheetMusicViewModel: ObservableObject {
-    var soundManager: MusicSoundManager = MusicSoundManager()
+    
+    private var soundManager: MusicSoundManager = MusicSoundManager()
+    private var cancellables = Set<AnyCancellable>()
     @Published var selectedNoteType: NoteType = .quarter
-    @Published var notes: [Int] = Songs.frereJacques.notes
-    var speed: [Int] = Songs.frereJacques.tempos
+    @Published var isPlaying = false
+    @Published var notes: [Int] = []
+    var speed: [Int] = []
 
-    init() {}
-    
-    func playPressed(_ isPlaying: Bool) {
-        soundManager.loadSong(notes, speed)
-        isPlaying ? soundManager.playMelody() : soundManager.stopMelody()
+    init() {
+        soundManager.$isPlaying
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isPlaying in
+                self?.isPlaying = isPlaying
+            }
+            .store(in: &cancellables)
     }
-    
+
+    func playPressed() {
+        soundManager.loadSong(notes, speed)
+        isPlaying ? soundManager.stopMelody() : soundManager.playMelody()
+    }
+
     func noteOn(pitch: Pitch, point _: CGPoint) {
         soundManager.loadSong([pitch.intValue], [10])
         if selectedNoteType != .none {
@@ -44,20 +55,22 @@ class SheetMusicViewModel: ObservableObject {
         soundManager.stopMelody()
     }
 
-    func addNote() {
+    func addRest() {
+        notes.append(-1)
+        speed.append(selectedNoteType.rawValue)
     }
-    
+
     func deleteNode() {
         if notes.count > 0 {
             notes.removeLast()
             speed.removeLast()
         }
     }
-    
+
     func changeTempo(_ tempo: Int) {
-        // change the sequencer
+        soundManager.changeTempo(tempo)
     }
-    
+
     func changeNoteType(_ noteType: NoteType) {
         selectedNoteType = (noteType == selectedNoteType ? .none : noteType)
     }
