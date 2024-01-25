@@ -1,5 +1,5 @@
 //
-//  HomeTabView.swift
+//  HomeView.swift
 //  MelodyWeaver
 //
 //  Created by Prince Avecillas on 1/24/24.
@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct HomeTabView: View {
+struct HomeView: View {
     var body: some View {
         NavigationView {
             List {
                 ForEach(0..<100) { item in
-                    NavigationLink(destination: Color.blue) {
+                    NavigationLink(destination: NewSongView(viewModel: SheetMusicViewModel())) {
                         HStack {
                             Text("Item \(item)")
                                 .font(.headline)
@@ -24,6 +24,10 @@ struct HomeTabView: View {
                 }
                 .onDelete(perform: delete)
                 .onMove(perform: move)
+                .swipeActions(edge: .trailing, allowsFullSwipe: false, content: { Button(action: {}, label: {
+                    Text("Delete")
+                }) })
+
             }
             .listStyle(InsetGroupedListStyle())
             .navigationBarTitle("My Songs")
@@ -41,5 +45,5 @@ struct HomeTabView: View {
 }
 
 #Preview {
-    HomeTabView()
+    HomeView()
 }

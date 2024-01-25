@@ -25,8 +25,8 @@ class SheetMusicViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     @Published var selectedNoteType: NoteType = .quarter
     @Published var isPlaying = false
-    @Published var notes: [Int] = []
-    var speed: [Int] = []
+    @Published var notes: [Int] = Songs.twinkleTwinkleLittleStar.notes
+    var speed: [Int] = Songs.twinkleTwinkleLittleStar.tempos
 
     init() {
         soundManager.$isPlaying
