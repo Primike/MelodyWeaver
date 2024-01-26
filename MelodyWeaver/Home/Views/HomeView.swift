@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State var showNewScreen = false
+    @State private var navigateToNewSong = false
+
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
                 ForEach(0..<100) { item in
                     NavigationLink(destination: NewSongView(viewModel: SheetMusicViewModel())) {
@@ -30,11 +33,38 @@ struct HomeView: View {
 
             }
             .listStyle(InsetGroupedListStyle())
-            .navigationBarTitle("My Songs")
-            .navigationBarItems(leading: EditButton(), trailing: EditButton())
+            .navigationTitle("My Songs")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    EditButton()
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        showNewScreen = true
+                    } label: {
+                        Label("New Song", systemImage: "plus")
+                    }
+                }
+            }
+            .sheet(isPresented: $showNewScreen) {
+                CreateNewSongView(onCreatePressed: {
+                    handleCreatePressed()
+                })
+            }
+            .navigationDestination(isPresented: $navigateToNewSong) {
+                NewSongView(viewModel: SheetMusicViewModel())
+            }
         }
     }
-    
+
+    private func handleCreatePressed() {
+        showNewScreen = false
+        Task {
+            try? await Task.sleep(nanoseconds: 100_000_000)
+            navigateToNewSong = true
+        }
+    }
+
     func delete(indexSet: IndexSet) {
 //        fruits.remove(atOffsets: indexSet)
     }
