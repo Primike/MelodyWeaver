@@ -107,7 +107,6 @@
 			isa = PBXGroup;
 			children = (
 				9E790AE82B616F65005920D6 /* HomeView.swift */,
-				9E3A19102B62D2260053FEB9 /* CreateNewSongView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -168,6 +167,7 @@
 		9E8CAF012B558E0F00E0C25E /* Files */ = {
 			isa = PBXGroup;
 			children = (
+				9E3A19102B62D2260053FEB9 /* CreateNewSongView.swift */,
 				9E307F2A2B54C4A500D87280 /* MelodyWeaverApp.swift */,
 				9E790AD62B5E1160005920D6 /* sawPiano1.exs */,
 				9E790AD52B5E1160005920D6 /* saw220-ana1.wav */,

@@ -8,19 +8,19 @@
 import SwiftUI
 
 struct HomeView: View {
+    @StateObject var viewModel: HomeViewModel
     @State var showNewScreen = false
-    @State private var navigateToNewSong = false
 
     var body: some View {
         NavigationStack {
             List {
-                ForEach(0..<100) { item in
+                ForEach(viewModel.songs) { item in
                     NavigationLink(destination: NewSongView(viewModel: SheetMusicViewModel())) {
                         HStack {
-                            Text("Item \(item)")
+                            Text("\(item.name)")
                                 .font(.headline)
                             Spacer()
-                            Text("Detail")
+                            Text("\(item.date)")
                                 .foregroundColor(.gray)
                         }
                     }
@@ -29,8 +29,7 @@ struct HomeView: View {
                 .onMove(perform: move)
                 .swipeActions(edge: .trailing, allowsFullSwipe: false, content: { Button(action: {}, label: {
                     Text("Delete")
-                }) })
-
+                })})
             }
             .listStyle(InsetGroupedListStyle())
             .navigationTitle("My Songs")
@@ -46,22 +45,9 @@ struct HomeView: View {
                     }
                 }
             }
-            .sheet(isPresented: $showNewScreen) {
-                CreateNewSongView(onCreatePressed: {
-                    handleCreatePressed()
-                })
-            }
-            .navigationDestination(isPresented: $navigateToNewSong) {
+            .navigationDestination(isPresented: $showNewScreen) {
                 NewSongView(viewModel: SheetMusicViewModel())
             }
-        }
-    }
-
-    private func handleCreatePressed() {
-        showNewScreen = false
-        Task {
-            try? await Task.sleep(nanoseconds: 100_000_000)
-            navigateToNewSong = true
         }
     }
 
@@ -75,5 +61,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    HomeView(viewModel: HomeViewModel())
 }
