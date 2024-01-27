@@ -15,7 +15,7 @@ struct SheetMusicView: View {
         ScrollView {
             LazyVGrid(columns: gridItems, spacing: 10) {
                 // Loop through the notes
-                ForEach(0..<viewModel.notes.count, id: \.self) { i in
+                ForEach(0..<viewModel.song.notes.count, id: \.self) { i in
                     VStack {
                         Image(viewModel.getCellImage(i))
                             .resizable()
@@ -34,9 +34,7 @@ struct SheetMusicView: View {
 }
 
 #Preview {
-    let viewModel = SheetMusicViewModel()
-    viewModel.notes = Songs.maryHadALittleLamb.notes
-    viewModel.speed = Songs.maryHadALittleLamb.tempos
+    let viewModel = SheetMusicViewModel(song: Songs.maryHadALittleLamb)
     return SheetMusicView()
         .environmentObject(viewModel)
 }

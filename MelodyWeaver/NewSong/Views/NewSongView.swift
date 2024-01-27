@@ -22,6 +22,7 @@ struct NewSongView: View {
         }
         .toolbar(content: {
             HStack {
+                Text(viewModel.song.name)
                 Picker("Tempo", selection: $selectedTempo) {
                     ForEach(tempoOptions, id: \.self) { tempo in
                         Text("\(tempo) BPM").tag(tempo)
@@ -42,7 +43,7 @@ struct NewSongView: View {
 }
 
 #Preview {
-    NewSongView(viewModel: SheetMusicViewModel())
+    NewSongView(viewModel: SheetMusicViewModel(song: Songs.maryHadALittleLamb))
 }
 
 public extension UIScreen {

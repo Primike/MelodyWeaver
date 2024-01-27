@@ -37,10 +37,10 @@ struct KeyboardView: View {
                 // MARK: - Top Buttons
                 
                 HStack(spacing: 0) {
-                    MusicButtonView(action: { viewModel.addRest() }, text: "Rest")
+                    MusicButtonView(action: { viewModel.addNote(-1) }, text: "Rest")
                     MusicButtonView(action: { changeOctave(-1) }, text: "←")
                     MusicButtonView(action: { changeOctave(1) }, text: "→")
-                    MusicButtonView(action: { viewModel.deleteNode() }, text: "Delete")
+                    MusicButtonView(action: { viewModel.deleteNote() }, text: "Delete")
                 }
                 .frame(maxHeight: .infinity)
             }
@@ -64,7 +64,7 @@ struct KeyboardView: View {
 }
 
 #Preview {
-    let viewModel = SheetMusicViewModel()
+    let viewModel = SheetMusicViewModel(song: Songs.maryHadALittleLamb)
     return KeyboardView()
         .environmentObject(viewModel)
 }

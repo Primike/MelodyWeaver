@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    
     @StateObject var viewModel: HomeViewModel
     @State var showNewScreen = false
 
@@ -15,13 +16,14 @@ struct HomeView: View {
         NavigationStack {
             List {
                 ForEach(viewModel.songs) { item in
-                    NavigationLink(destination: NewSongView(viewModel: SheetMusicViewModel())) {
+                    NavigationLink(destination: NewSongView(viewModel: viewModel.createViewModel(item))) {
                         HStack {
                             Text("\(item.name)")
                                 .font(.headline)
                             Spacer()
                             Text("\(item.date)")
                                 .foregroundColor(.gray)
+                                .font(.caption)
                         }
                     }
                 }
@@ -46,17 +48,17 @@ struct HomeView: View {
                 }
             }
             .navigationDestination(isPresented: $showNewScreen) {
-                NewSongView(viewModel: SheetMusicViewModel())
+                NewSongView(viewModel: viewModel.createNewSong())
             }
         }
     }
 
     func delete(indexSet: IndexSet) {
-//        fruits.remove(atOffsets: indexSet)
+        viewModel.deleteSong(indexSet)
     }
     
     func move(indices: IndexSet, newOffset: Int) {
-//        fruits.move(fromOffsets: indices, toOffset: newOffset)
+        viewModel.moveSongOrder(indices: indices, newOffset: newOffset)
     }
 }
 
