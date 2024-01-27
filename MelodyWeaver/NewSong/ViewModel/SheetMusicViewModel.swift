@@ -29,8 +29,6 @@ class SheetMusicViewModel: ObservableObject {
 
     init(song: Song) {
         self.song = song
-//        self.notes = song.notes
-//        self.speed = song.speed
         
         soundManager.$isPlaying
             .receive(on: DispatchQueue.main)
@@ -83,7 +81,7 @@ class SheetMusicViewModel: ObservableObject {
     }
 
     func changeTempo(_ tempo: Int) {
-        soundManager.changeTempo(tempo)
+        soundManager.changeTempo(MIDITranslation.tempoToLength[tempo, default: 1])
     }
     
     // MARK: - Functions for list cells

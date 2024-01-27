@@ -31,12 +31,12 @@ class MusicSoundManager: ObservableObject, HasAudioEngine {
                 self.playNextNote()
             }
         }
-        
+
         engine.output = PeakLimiter(Mixer(instrument, midiCallback), attackTime: 0.001, decayTime: 0.001, preGain: 0)
         
         sequencer = SequencerTrack(targetNode: midiCallback)
-        sequencer.length = 0.50
-        sequencer.add(noteNumber: 20, position: 0.0, duration: 0.50)
+        sequencer.length = 1
+        sequencer.add(noteNumber: 20, position: 0.0, duration: 1)
         loadInstrument("sawPiano1")
     }
     
@@ -47,10 +47,10 @@ class MusicSoundManager: ObservableObject, HasAudioEngine {
         noteSpeed = speed
     }
     
-    func changeTempo(_ tempo: Int) {
+    func changeTempo(_ tempo: Double) {
         sequencer.clear()
-        sequencer.length = 0.5
-        sequencer.add(noteNumber: 20, position: 0.0, duration: 0.5)
+        sequencer.length = tempo
+        sequencer.add(noteNumber: 20, position: 0.0, duration: tempo)
     }
     
     func playMelody() {

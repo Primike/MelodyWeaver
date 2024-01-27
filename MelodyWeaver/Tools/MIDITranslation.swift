@@ -49,4 +49,30 @@ class MIDITranslation {
         if pitch == -1 { return midiTempoToRestImage[tempo, default: ""] }
         return midiTempoToNoteImage[tempo, default: ""]
     }
+    
+    static let tempoToLength: [Int: Double] = [
+        30: 2.0,
+        40: 1.5,
+        50: 1.2,
+        60: 1.0,
+        70: 0.857,
+        80: 0.75,
+        90: 0.667,
+        100: 0.6,
+        110: 0.545,
+        120: 0.5,
+        130: 0.462,
+        140: 0.429,
+        150: 0.4,
+        160: 0.375,
+        170: 0.353,
+        180: 0.333,
+        190: 0.316,
+        200: 0.3,
+        220: 0.273,
+        240: 0.25,
+        260: 0.231,
+        280: 0.214,
+        300: 0.2
+    ]
 }

@@ -10,8 +10,8 @@ import SwiftUI
 struct NewSongView: View {
     
     @StateObject var viewModel: SheetMusicViewModel
-    @State var selectedTempo: Int = 120 // Default value
-    let tempoOptions = [60, 90, 120, 150, 180] // Example tempo values
+    @State var selectedTempo: Int = 60
+    let tempoOptions = Array(MIDITranslation.tempoToLength.keys).sorted()
 
     var body: some View {
         VStack {
@@ -19,6 +19,9 @@ struct NewSongView: View {
                 .frame(height: UIScreen.main.bounds.height * 0.45)
             KeyboardView()
                 .frame(height: UIScreen.main.bounds.height * 0.45)
+        }
+        .onChange(of: selectedTempo) { newTempo in
+            viewModel.changeTempo(newTempo)
         }
         .toolbar(content: {
             HStack {
