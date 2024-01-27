@@ -12,7 +12,7 @@ struct KeyboardView: View {
     
     @EnvironmentObject var viewModel: SheetMusicViewModel
     @State var currentPitch = 5
-    private let pitches = KeyboardRange.startAtC
+    let pitches = KeyboardRange.startAtC
     
     var body: some View {
         VStack(spacing: 0) {
@@ -67,20 +67,4 @@ struct KeyboardView: View {
     let viewModel = SheetMusicViewModel(song: Songs.maryHadALittleLamb)
     return KeyboardView()
         .environmentObject(viewModel)
-}
-
-struct KeyboardRange {
-    static let startAtC = [
-        Pitch(0) ... Pitch(16),
-        Pitch(12) ... Pitch(28),
-        Pitch(24) ... Pitch(40),
-        Pitch(36) ... Pitch(52),
-        Pitch(48) ... Pitch(64),
-        Pitch(60) ... Pitch(76),
-        Pitch(72) ... Pitch(88),
-        Pitch(84) ... Pitch(100),
-        Pitch(96) ... Pitch(112),
-        Pitch(108) ... Pitch(124),
-        Pitch(111)...Pitch(127)
-    ]
 }

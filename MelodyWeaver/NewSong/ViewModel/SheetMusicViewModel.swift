@@ -9,16 +9,6 @@ import Foundation
 import Tonic
 import Combine
 
-enum NoteType: Int {
-    case none = 0
-    case whole = 15
-    case half = 30
-    case quarter = 60
-    case triplet = 180
-    case eight = 120
-    case sixteenth = 240
-}
-
 class SheetMusicViewModel: ObservableObject {
     
     private var soundManager: MusicSoundManager = MusicSoundManager()
@@ -48,6 +38,7 @@ class SheetMusicViewModel: ObservableObject {
     
     func changeName(_ name: String) {
         song.name = name
+        song.time = Date()
     }
 
     // MARK: - Loads and plays the current song

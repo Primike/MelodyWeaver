@@ -11,11 +11,16 @@ import Combine
 
 class HomeViewModel: ObservableObject {
     
-//    @AppStorage("songs") private var songsData: Data = Data()
+    @AppStorage("songs") private var songsData: Data = Data()
     @Published var songs: [Song] = []
+    @Published var filterOptions: [SongSort] = [.date, .name]
     private var cancellables = Set<AnyCancellable>()
 
     init() {
+        if let decodedSongs = try? JSONDecoder().decode([Song].self, from: songsData) {
+            self.songs = decodedSongs
+        }
+
         if songs.isEmpty {
             let defaultSongs = [
                 Songs.maryHadALittleLamb,
@@ -26,10 +31,6 @@ class HomeViewModel: ObservableObject {
             songs = defaultSongs
             updateSongsData()
         }
-        
-//        if let decodedSongs = try? JSONDecoder().decode([Song].self, from: songsData) {
-//            self.songs = decodedSongs
-//        }
     }
     
     func createNewSong() -> SheetMusicViewModel {
@@ -78,11 +79,23 @@ class HomeViewModel: ObservableObject {
     }
     
     func updateSongsData() {
-        // change date
-//        songsData = (try? JSONEncoder().encode(songs)) ?? Data()
+        do {
+            songsData = try JSONEncoder().encode(songs)
+        } catch {
+            print("Error saving songs: \(error)")
+        }
     }
     
     func moveSongOrder(indices: IndexSet, newOffset: Int) {
         songs.move(fromOffsets: indices, toOffset: newOffset)
+    }
+    
+    func sortSongs(_ option: SongSort) {
+        switch option {
+        case .date:
+            songs.sort { $0.time > $1.time }
+        case .name:
+            songs.sort { $0.name < $1.name }
+        }
     }
 }

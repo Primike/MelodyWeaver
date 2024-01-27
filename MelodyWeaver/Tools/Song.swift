@@ -1,5 +1,5 @@
 //
-//  Songs.swift
+//  Song.swift
 //  MelodyWeaver
 //
 //  Created by Prince Avecillas on 1/23/24.

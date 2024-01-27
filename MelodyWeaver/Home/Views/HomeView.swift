@@ -11,6 +11,8 @@ struct HomeView: View {
     
     @StateObject var viewModel: HomeViewModel
     @State var showNewScreen = false
+    @State var sort: SongSort = .date
+    let sortOptions: [SongSort] = [.date, .name]
 
     var body: some View {
         NavigationStack {
@@ -29,15 +31,20 @@ struct HomeView: View {
                 }
                 .onDelete(perform: delete)
                 .onMove(perform: move)
-                .swipeActions(edge: .trailing, allowsFullSwipe: false, content: { Button(action: {}, label: {
-                    Text("Delete")
-                })})
             }
             .listStyle(InsetGroupedListStyle())
             .navigationTitle("My Songs")
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     EditButton()
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Picker("Filter", selection: $sort) {
+                        ForEach(sortOptions, id: \.self) { text in
+                            Text(text.rawValue).tag(text.rawValue)
+                        }
+                    }
+                    .pickerStyle(MenuPickerStyle())
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
@@ -49,6 +56,9 @@ struct HomeView: View {
             }
             .navigationDestination(isPresented: $showNewScreen) {
                 NewSongView(viewModel: viewModel.createNewSong())
+            }
+            .onChange(of: sort) { newSort in
+                viewModel.sortSongs(newSort)
             }
         }
     }

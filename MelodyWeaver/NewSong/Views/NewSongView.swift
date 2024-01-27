@@ -18,9 +18,9 @@ struct NewSongView: View {
     var body: some View {
         VStack {
             SheetMusicView()
-                .frame(height: UIScreen.main.bounds.height * 0.4)
+                .frame(height: UIScreen.screenHeight * 0.4)
             KeyboardView()
-                .frame(height: UIScreen.main.bounds.height * 0.45)
+                .frame(height: UIScreen.screenHeight * 0.45)
         }
         .onChange(of: selectedTempo) { newTempo in
             viewModel.changeTempo(newTempo)
@@ -83,10 +83,4 @@ struct NewSongView: View {
 
 #Preview {
     NewSongView(viewModel: SheetMusicViewModel(song: Songs.maryHadALittleLamb))
-}
-
-public extension UIScreen {
-    static let screenWidth = UIScreen.main.bounds.width
-    static let screenHeight = UIScreen.main.bounds.height
-
 }
