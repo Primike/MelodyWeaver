@@ -25,11 +25,13 @@ class SheetMusicViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     @Published var selectedNoteType: NoteType = .quarter
     @Published var isPlaying = false
+    @Published var index: Int = 0
     @Published var song: Song
 
     init(song: Song) {
         self.song = song
         
+        // MARK: - Using combine on sound manager variables
         soundManager.$isPlaying
             .receive(on: DispatchQueue.main)
             .sink { [weak self] isPlaying in
@@ -37,13 +39,22 @@ class SheetMusicViewModel: ObservableObject {
                 self.isPlaying = isPlaying
             }
             .store(in: &cancellables)
+        
+        soundManager.$currentIndex
+            .receive(on: DispatchQueue.main)
+            .assign(to: \.index, on: self)
+            .store(in: &cancellables)
+    }
+    
+    func changeName(_ name: String) {
+        song.name = name
     }
 
     // MARK: - Loads and plays the current song
     
     func playPressed() {
         soundManager.loadSong(song.notes, song.speed)
-        isPlaying ? soundManager.stopMelody() : soundManager.playMelody()
+        isPlaying ? soundManager.stopSound() : soundManager.playMelody()
     }
 
     // MARK: - Only handles the short sound played when a key is touched
@@ -52,11 +63,11 @@ class SheetMusicViewModel: ObservableObject {
         // add note if a notetype is selected
         addNote(pitch.intValue)
         soundManager.loadSong([pitch.intValue], [10])
-        soundManager.playMelody()
+        soundManager.keyboardPressed()
     }
 
     func noteOff(pitch: Pitch) {
-        soundManager.stopMelody()
+        soundManager.stopSound()
     }
     
     // MARK: - Changes note type like quarter/half/eight

@@ -13,11 +13,12 @@ import Tonic
 
 class MusicSoundManager: ObservableObject, HasAudioEngine {
     
-    @Published var isPlaying: Bool = false
     let engine = AudioEngine()
     var instrument = AppleSampler()
     var sequencer: SequencerTrack!
     var midiCallback: CallbackInstrument!
+    @Published var isPlaying: Bool = false
+    @Published var currentIndex = 0
     var songNotes = [Int]()
     var noteSpeed = [Int]()
 
@@ -40,8 +41,6 @@ class MusicSoundManager: ObservableObject, HasAudioEngine {
         loadInstrument("sawPiano1")
     }
     
-    var currentIndex = 0
-
     func loadSong(_ notes: [Int], _ speed: [Int]) {
         songNotes = notes
         noteSpeed = speed
@@ -59,22 +58,25 @@ class MusicSoundManager: ObservableObject, HasAudioEngine {
         sequencer.playFromStart()
     }
         
+    func keyboardPressed() {
+        start()
+        sequencer.playFromStart()
+    }
+    
     func playNextNote() {
-        let index = currentIndex
-        currentIndex += 1
-        
-        if index >= songNotes.count || index >= noteSpeed.count {
+        if currentIndex >= songNotes.count || currentIndex >= noteSpeed.count {
             // Need to send message to viewmodel playSound
-            stopMelody()
+            stopSound()
             return
         }
         
-        let note = max(0, songNotes[index])
-        sequencer.tempo = Double(noteSpeed[index])
+        let note = max(0, songNotes[currentIndex])
+        sequencer.tempo = Double(noteSpeed[currentIndex])
         instrument.play(noteNumber: UInt8(note), velocity: 120, channel: 0)
+        currentIndex += 1
     }
     
-    func stopMelody() {
+    func stopSound() {
         currentIndex = 0
         stop()
         isPlaying = false

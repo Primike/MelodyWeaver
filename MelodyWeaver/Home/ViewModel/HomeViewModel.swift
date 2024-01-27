@@ -12,7 +12,6 @@ import Combine
 class HomeViewModel: ObservableObject {
     
 //    @AppStorage("songs") private var songsData: Data = Data()
-    // create a funciton to return viewmodels for this like create new song
     @Published var songs: [Song] = []
     private var cancellables = Set<AnyCancellable>()
 
@@ -55,6 +54,7 @@ class HomeViewModel: ObservableObject {
                 guard let self = self else { return }
                 if let index = self.songs.firstIndex(where: { $0.id == song.id }) {
                     self.songs[index] = song
+                    updateSongsData()
                 }
             }
             .store(in: &cancellables)
@@ -78,6 +78,7 @@ class HomeViewModel: ObservableObject {
     }
     
     func updateSongsData() {
+        // change date
 //        songsData = (try? JSONEncoder().encode(songs)) ?? Data()
     }
     
