@@ -19,6 +19,7 @@ class MusicSoundManager: ObservableObject, HasAudioEngine {
     var midiCallback: CallbackInstrument!
     @Published var isPlaying: Bool = false
     @Published var currentIndex = 0
+    var sound: String = Instruments.piano1.rawValue
     var songNotes = [Int]()
     var noteSpeed = [Int]()
 
@@ -38,9 +39,9 @@ class MusicSoundManager: ObservableObject, HasAudioEngine {
         sequencer = SequencerTrack(targetNode: midiCallback)
         sequencer.length = 1
         sequencer.add(noteNumber: 20, position: 0.0, duration: 1)
-        loadInstrument("sawPiano1")
+        loadInstrument()
     }
-    
+        
     func loadSong(_ notes: [Int], _ speed: [Int]) {
         songNotes = notes
         noteSpeed = speed
@@ -53,12 +54,14 @@ class MusicSoundManager: ObservableObject, HasAudioEngine {
     }
     
     func playMelody() {
+        loadInstrument()
         isPlaying = true
         start()
         sequencer.playFromStart()
     }
         
     func keyboardPressed() {
+        loadInstrument()
         start()
         sequencer.playFromStart()
     }
@@ -83,7 +86,6 @@ class MusicSoundManager: ObservableObject, HasAudioEngine {
     }
 }
 
-
 extension MusicSoundManager {
 
     private func stopNotes() {
@@ -92,15 +94,15 @@ extension MusicSoundManager {
         }
     }
     
-    private func loadInstrument(_ name: String) {
+    func loadInstrument() {
         do {
-            if let fileURL = Bundle.main.url(forResource: name, withExtension: "exs") {
+            if let fileURL = Bundle.main.url(forResource: "Sounds/Sampler Instruments/\(sound)", withExtension: "exs") {
                 try instrument.loadInstrument(url: fileURL)
             } else {
                 Log("Could not find file")
             }
-        } catch {
-            Log("Could not load instrument")
+        } catch(let error) {
+            print(error)
         }
     }
 }

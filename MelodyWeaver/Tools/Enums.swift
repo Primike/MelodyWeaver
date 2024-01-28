@@ -23,6 +23,14 @@ enum NoteType: Int {
     case sixteenth = 240
 }
 
+enum Instruments: String, CaseIterable {
+    case piano1 = "Piano 1"
+    case piano2 = "Piano 2"
+    case synth1 = "Synth 1"
+    case synth2 = "Synth 2"
+    case synth3 = "Synth 3"
+}
+
 struct KeyboardRange {
     static let startAtC = [
         Pitch(0) ... Pitch(16),

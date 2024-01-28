@@ -13,23 +13,33 @@ struct SheetMusicView: View {
 
     var body: some View {
         ScrollView {
-            LazyVGrid(columns: gridItems, spacing: 10) {
-                ForEach(0..<viewModel.song.notes.count, id: \.self) { i in
-                    VStack {
-                        Image(viewModel.getCellImage(i))
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 55, height: 55)
-                        
-                        Text(viewModel.getCellName(i))
-                            .font(.callout)
-                            .minimumScaleFactor(0.4)
+            ScrollViewReader { scrollView in
+                LazyVGrid(columns: gridItems, spacing: 10) {
+                    ForEach(0..<viewModel.song.notes.count, id: \.self) { i in
+                        VStack {
+                            Image(viewModel.getCellImage(i))
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 55, height: 55)
+                            
+                            Text(viewModel.getCellName(i))
+                                .font(.callout)
+                                .minimumScaleFactor(0.4)
+                        }
+                        .scaleEffect(isHighlighted(i) ? 1.2 : 1.0)
+                        .shadow(color: isHighlighted(i) ? Color.blue.opacity(0.7) : Color.clear, radius: 10)
+                        .id(i) 
                     }
-                    .scaleEffect(isHighlighted(i) ? 1.2 : 1.0)
-                    .shadow(color: isHighlighted(i) ? Color.blue.opacity(0.7) : Color.clear, radius: 10)
+                }
+                .padding()
+                .onChange(of: viewModel.index) { newIndex in
+                    if viewModel.isPlaying {
+                        withAnimation {
+                            scrollView.scrollTo(newIndex - 1, anchor: .center)
+                        }
+                    }
                 }
             }
-            .padding()
         }
     }
     

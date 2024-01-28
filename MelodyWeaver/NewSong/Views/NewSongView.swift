@@ -11,6 +11,7 @@ struct NewSongView: View {
     
     @StateObject var viewModel: SheetMusicViewModel
     @State var selectedTempo: Int = 60
+    @State var sound = Instruments.piano1.rawValue
     @State private var isEditingName = false
     @State private var name = ""
     let tempoOptions = Array(MIDITranslation.tempoToLength.keys).sorted()
@@ -25,7 +26,10 @@ struct NewSongView: View {
         .onChange(of: selectedTempo) { newTempo in
             viewModel.changeTempo(newTempo)
         }
-        .navigationTitle("Name")
+        .onChange(of: sound) { sound in
+            viewModel.changeInstrument(sound)
+        }
+        .navigationTitle(viewModel.song.name)
         .toolbarTitleMenu {
             Button {
                 isEditingName = true
@@ -37,7 +41,15 @@ struct NewSongView: View {
             HStack {
                 Picker("Tempo", selection: $selectedTempo) {
                     ForEach(tempoOptions, id: \.self) { tempo in
-                        Text("\(tempo) BPM").tag(tempo)
+                        Text("\(tempo) BPM")
+                            .tag(tempo)
+                    }
+                }
+                .pickerStyle(MenuPickerStyle())
+
+                Picker("Instrument", selection: $sound) {
+                    ForEach(Instruments.allCases, id: \.self) { sound in
+                        Text("\(sound.rawValue)").tag(sound.rawValue)
                     }
                 }
                 .pickerStyle(MenuPickerStyle())

@@ -26,7 +26,9 @@ class HomeViewModel: ObservableObject {
                 Songs.maryHadALittleLamb,
                 Songs.twinkleTwinkleLittleStar,
                 Songs.frereJacques,
-                Songs.happyBirthday
+                Songs.happyBirthday,
+                Songs.axelF,
+                Songs.allaTurka
             ]
             songs = defaultSongs
             updateSongsData()

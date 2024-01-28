@@ -32,10 +32,13 @@ class SheetMusicViewModel: ObservableObject {
         
         soundManager.$currentIndex
             .receive(on: DispatchQueue.main)
-            .assign(to: \.index, on: self)
+            .sink { [weak self] newIndex in
+                guard let self = self else { return }
+                self.index = newIndex
+            }
             .store(in: &cancellables)
     }
-    
+
     func changeName(_ name: String) {
         song.name = name
         song.time = Date()
@@ -84,6 +87,11 @@ class SheetMusicViewModel: ObservableObject {
 
     func changeTempo(_ tempo: Int) {
         soundManager.changeTempo(MIDITranslation.tempoToLength[tempo, default: 1])
+    }
+    
+    func changeInstrument(_ sound: String) {
+        soundManager.sound = sound
+        soundManager.loadInstrument()
     }
     
     // MARK: - Functions for list cells
